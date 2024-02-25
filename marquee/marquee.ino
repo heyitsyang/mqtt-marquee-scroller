@@ -23,7 +23,8 @@ void otaInit();
 //global vars
 String lastMinute = "xx";
 int displayRefreshCount = 1;
-String hostname = HOSTNAME + String(ESP.getChipId(), HEX);
+//String hostname = HOSTNAME + String(ESP.getChipId(), HEX);
+String hostname = HOSTNAME;
 //global utility classes
 TimeService timeClient = TimeService();
 MqttClient mqttClient = MqttClient();
@@ -48,6 +49,7 @@ void setup() {
   //Local intialization. Once its business is done, there is no need to keep it around
   WiFiManager wifiManager;
   wifiManager.setAPCallback(configModeCallback);
+  WiFi.setHostname(HOSTNAME);
 
   if (!wifiManager.autoConnect((const char *)hostname.c_str())) {
     delay(3000);

@@ -4,7 +4,7 @@
 #pragma once
 #include "Arduino.h"
 #define VERSION "2.16"
-#define HOSTNAME "CLOCK-"
+#define HOSTNAME "marquee-scroller"
 
 /******************************************************************************
  * This is designed for the Wemos D1 ESP8266

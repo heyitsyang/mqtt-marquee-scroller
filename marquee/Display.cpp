@@ -215,7 +215,7 @@ String Display::hourMinutes(boolean IS_24HOUR, boolean flashOnSeconds) {
   if (IS_24HOUR) {
     return String(timeClient.hour()) + secondsIndicator(flashOnSeconds) + timeClient.zeroPad(timeClient.minute());
   } else {
-    return String(timeClient.get12hHourFormat()) + secondsIndicator(flashOnSeconds) + timeClient.zeroPad(timeClient.second());
+    return String(timeClient.get12hHourFormat()) + secondsIndicator(flashOnSeconds) + timeClient.zeroPad(timeClient.minute());
   }
 }
 

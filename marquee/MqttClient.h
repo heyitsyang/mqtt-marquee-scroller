@@ -6,6 +6,9 @@
 #include <PubSubClient.h>
 #include "libs/ArduinoJson/ArduinoJson.h"
 
+#define MQTT_USER "marquee-scroller"
+#define MQTT_PASSWORD "marquee-scroller"
+
 struct PanelFace {
   // 0 - empty, 1 - clock, 2 - binary, 3 - percent, 4 - char
   byte faceType = 0;

@@ -17,7 +17,8 @@ void MqttClient::connect(String _url, int _port, String _topic, String _faceTopi
     topic.trim();
     faceTopic.trim();
     deviceId.trim();
-    mqttDeviceId = deviceId + "-" + String(random(0xffff), HEX);
+    //mqttDeviceId = deviceId + "-" + String(random(0xffff), HEX);
+    mqttDeviceId = deviceId;
     Serial.println("MQTT with domain as " + mqttDeviceId);
     client.setServer(url.c_str(), port);
     client.setSocketTimeout(60);
@@ -26,7 +27,7 @@ void MqttClient::connect(String _url, int _port, String _topic, String _faceTopi
     int i = 0;
     while (!client.connected() && i < 5) {
         delay(20);
-        if (!client.connect(mqttDeviceId.c_str())) {
+        if (!client.connect(mqttDeviceId.c_str(), MQTT_USER, MQTT_PASSWORD)) {
             i++;
             Serial.println("MQTT connection error! on " + url + ":" + String(port) + " state=" + String(client.state()));
             delay(2000);
@@ -82,7 +83,7 @@ void MqttClient::loop() {
 void MqttClient::reconnect() {
     if(!client.connected()){
         //mqttDeviceId = deviceId + "-" + String(random(0xffff), HEX);
-        if(client.connect(mqttDeviceId.c_str())) {
+        if(client.connect(mqttDeviceId.c_str(), MQTT_USER, MQTT_PASSWORD)) {
             client.subscribe(topic.c_str());
             client.subscribe(faceTopic.c_str());
             Serial.println("MQTT Reconnected");
